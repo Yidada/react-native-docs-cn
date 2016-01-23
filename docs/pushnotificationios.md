@@ -13,15 +13,20 @@
 然后在你的AppDelegate实现中添加如下的代码：
 
 ```objective-c
-  // Required for the register event.
+ // Required to register for notifications
+   - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+   {
+    [RCTPushNotificationManager didRegisterUserNotificationSettings:notificationSettings];
+   }
+   // Required for the register event.
    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
    {
-    [RCTPushNotificationManager application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    [RCTPushNotificationManager didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
    }
    // Required for the notification event.
    - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)notification
    {
-    [RCTPushNotificationManager application:application didReceiveRemoteNotification:notification];
+    [RCTPushNotificationManager didReceiveRemoteNotification:notification];
    }
 ```
 
